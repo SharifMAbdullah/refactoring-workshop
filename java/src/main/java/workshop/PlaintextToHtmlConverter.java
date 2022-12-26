@@ -1,10 +1,12 @@
-package workshop;
+package RefactorPractice;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class PlaintextToHtmlConverter {
     String source;
@@ -20,7 +22,8 @@ public class PlaintextToHtmlConverter {
     }
 
     protected String read() throws IOException {
-        return new String(Files.readAllBytes(Paths.get("sample.txt")));
+        String fileName = "";
+        return new String(Files.readAllBytes(Paths.get(fileName)));
     }
 
     private String basicHtmlEncode(String source) {
@@ -28,52 +31,48 @@ public class PlaintextToHtmlConverter {
         i = 0;
         result = new ArrayList<>();
         convertedLine = new ArrayList<>();
-        characterToConvert = stashNextCharacterAndAdvanceThePointer();
+        characterToConvert = pickCharAndAdvance();
 
         while (i <= this.source.length()) {
-            switch (characterToConvert) {
-                case "<":
-                    convertedLine.add("&lt;");
-                    break;
-                case ">":
-                    convertedLine.add("&gt;");
-                    break;
-                case "&":
-                    convertedLine.add("&amp;");
-                    break;
-                case "\n":
-                    addANewLine();
-                    break;
-                default:
-                    pushACharacterToTheOutput();
-            }
+            characterConversion();
 
             if (i >= source.length()) break;
-
-            characterToConvert = stashNextCharacterAndAdvanceThePointer();
+            characterToConvert = pickCharAndAdvance();
         }
         addANewLine();
         String finalResult = String.join("<br />", result);
         return finalResult;
     }
 
-    //pick the character from source string
-    //and increment the pointer
-    private String stashNextCharacterAndAdvanceThePointer() {
+    private String pickCharAndAdvance() {
         char c = source.charAt(i);
         i += 1;
         return String.valueOf(c);
     }
 
-    //stringfy convertedLine array and push into result
-    //reset convertedLine
     private void addANewLine() {
         String line = String.join("", convertedLine);
         result.add(line);
         convertedLine = new ArrayList<>();
     }
 
-    private void pushACharacterToTheOutput() {
-        convertedLine.add(characterToConvert);
+    private void characterConversion(){
+        switch (characterToConvert) {
+            case "<":
+                convertedLine.add("&lt;");
+                break;
+            case ">":
+                convertedLine.add("&gt;");
+                break;
+            case "&":
+                convertedLine.add("&amp;");
+                break;
+            case "\n":
+                addANewLine();
+                break;
+            default:
+                convertedLine.add(characterToConvert);;
+        }
     }
+
 }

@@ -1,25 +1,22 @@
-package workshop;
+package RefactorPractice;
 
-/**
- * Requirements:
- * For factor of three print Fizz instead of the number
- * For factor of five print Buzz instead of the number
- * For numbers which are factors of both three and five print FizzBuzz instead of the number
- */
 public class FizzBuzz {
-    public static String say(int number) {
+    public String say(int number) {
         String strReturn = null;
 
         if (number % 15 == 0) {
-            strReturn = "FizzBuzz";
+            strReturn = "RefactorPractice.FizzBuzz";
         } else {
-            if (number % 3 == 0) strReturn = "Fizz";
-
-            if (number % 5 == 0) strReturn = "Buzz";
+            strReturn = threeAndFive(number);
         }
 
         if (strReturn != null) return strReturn;
-
         return String.valueOf(number);
     }
+
+     public  String threeAndFive(int number){
+            if (number % 3 == 0) return  "Fizz";
+            if (number % 5 == 0) return "Buzz";
+            return null;
+        }
 }
