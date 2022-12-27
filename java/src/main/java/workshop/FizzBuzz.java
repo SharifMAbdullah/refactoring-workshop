@@ -1,11 +1,11 @@
 package RefactorPractice;
 
 public class FizzBuzz {
-    public String say(int number) {
+    public String checkNumber(int number) {
         String strReturn = null;
 
         if (number % 15 == 0) {
-            strReturn = "RefactorPractice.FizzBuzz";
+            strReturn = "FizzBuzz";
         } else {
             strReturn = threeAndFive(number);
         }
