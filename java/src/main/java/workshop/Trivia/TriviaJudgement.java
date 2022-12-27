@@ -32,7 +32,7 @@ public class TriviaJudgement {
         System.out.println(message);
     }
 
-    //duplicate code
+
     protected void askQuestion() {
         ArrayList<String> category = new ArrayList<>(Arrays.asList("Pop", "Science", "Sports"));
         for (String iterator: category) {
@@ -47,7 +47,7 @@ public class TriviaJudgement {
         }
     }
 
-    //long method, duplicate code
+
     protected String currentCategory() {
         int pop[] = {0,4,8};
         int science[] = {1,5,9};
@@ -80,7 +80,7 @@ public class TriviaJudgement {
         resetPlayers();
         return winner;
     }
-    //long method
+
     public boolean wasCorrectlyAnswered() {
         if (inPenaltyBox[currentPlayer]) {
             if (isGettingOutOfPenaltyBox) {
@@ -96,7 +96,7 @@ public class TriviaJudgement {
         return false;
     }
 
-    //long method
+
     public boolean wrongAnswer() {
         announce("Question was incorrectly answered");
         announce(players.get(currentPlayer) + " was sent to the penalty box");
