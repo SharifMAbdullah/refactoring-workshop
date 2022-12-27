@@ -14,7 +14,7 @@ public class FizzBuzz {
         return String.valueOf(number);
     }
 
-     public  String threeAndFive(int number){
+     public  String dividedByThreeAndFive(int number){
             if (number % 3 == 0) return  "Fizz";
             if (number % 5 == 0) return "Buzz";
             return null;
